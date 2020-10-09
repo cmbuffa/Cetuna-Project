@@ -1,3 +1,50 @@
-<p>
-  registro-alumno works!
-</p>
+
+<div class="container-fluid"> 
+      <h2>Registro de Alumnos</h2>
+      <div class="d-flex mb-3 justify-content-between" >
+        <div class="col-5">
+          <a class="btn btn-primary" [routerLink]="['/registro-alu/nuevo']" ><i class="fa fa-plus-square"></i> Nuevo alumno</a>
+        </div>
+        <div class="col-7">
+            <input type="text" class="form-control" placeholder="Buscar..."> 
+        </div>
+    </div>
+      <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>CEDULA</th>
+                <th>NOMBRE COMPLETO</th>
+                <th>EDAD</th>
+                <th>CIUDAD</th>
+                <th>DPTO</th>
+                <th>CELULAR</th>
+                <th>LUGAR TRABAJO</th>
+                <th>NACIONALIDAD</th>
+                <th>FECHA MODIFICACION</th>
+                <th>ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let alu of alumnos">
+                <td>{{alu.id}}</td>
+                <td>{{alu.cedula}}</td>
+                <td>{{alu.nombreApellido.toUpperCase()}}</td>
+                <td>{{alu.edad}}</td>
+                <td>{{alu.ciudadActual.toUpperCase()}}</td>
+                <td>{{alu.dptoActual.toUpperCase()}}</td>
+                <td>{{alu.celular}}</td>
+                <td>{{alu.lugarTrabajo.toUpperCase()}}</td>
+                <td>{{alu.nacionalidad.toUpperCase()}}</td>
+                <td>{{alu.fechaModificacion | date:'yyyy-MM-dd hh:mm'}}</td>
+                <td>
+                  <ul class="list-inline member-icons">
+                    <li class="list-inline-item"><button class="btn btn-primary" [routerLink]="['/registro-alu/', alu.id]"><i class="fa fa-search"></i></button></li>
+                    <li class="list-inline-item"><button class="btn btn-primary" [routerLink]="['/registro-alu/editar', alu.id]"><i class="fa fa-edit"></i></button></li>
+                    <li class="list-inline-item"><button class="btn btn-danger"><i class="fa fa-trash"></i></button></li>
+                  </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

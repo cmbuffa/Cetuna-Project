@@ -9,12 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  items: string[] = [
-    'The first choice!',
-    'And another choice for you.',
-    'but wait! A third!'
-  ];
-  constructor(public alertify: AlertifyService, private authService: AuthService, private router: Router) { }
+  constructor(private alertify: AlertifyService, public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }

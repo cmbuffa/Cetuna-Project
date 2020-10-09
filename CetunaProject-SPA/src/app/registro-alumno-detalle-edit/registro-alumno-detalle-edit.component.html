@@ -1,0 +1,103 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <h2>Registro Alumno</h2>
+    </div>
+    <div class="col-sm-9">
+      <div class="alert alert-info" [hidden]="!editForm.dirty">
+        <strong>Tiene cambios no guardados!</strong>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{alumno?.fotoUrl}}" alt="assets/img/anon.png" width="100" height="100">
+        <div class="card-body">
+          <div>            
+            <p>{{alumno?.apellidos.toUpperCase()}}, {{alumno?.nombres.toUpperCase()}}</p>
+          </div>
+          <div>            
+            <strong>Cedula N°:</strong>
+            <p>{{alumno?.cedula}}</p>
+          </div>
+          <div>
+            <strong>Ultima Modificacion:</strong>
+            <p>{{alumno?.fechaModificacion | date:'yyyy-MM-dd hh:mm'}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-success w-100" (click)="volver()"><i class="fa fa-arrow-left"></i> Volver</button>
+            <button class="btn btn-primary w-100" [disabled]="!editForm.dirty" form="editForm"><i class="fa fa-database"></i> Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="Informacion basica">
+            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateAlumno()">
+              <div class="row">
+                <div class="col-sm-5">                  
+                  <h5>Nombres</h5>
+                  <input type="text" name="nombres" class="form-control" [(ngModel)]="alumno.nombres">
+                  <h5>Apellidos</h5>
+                  <input type="text" name="apellidos" class="form-control" [(ngModel)]="alumno.apellidos">
+                  <h5>Cedula de Identidad</h5>
+                  <input type="text" name="cedula" class="form-control" [(ngModel)]="alumno.cedula">
+                  <h5>Fecha de nacimiento</h5>
+                  <input type="date" name="fecNacimiento" class="form-control" [ngModel]="alumno.fecNacimiento | date:'yyyy-MM-dd'" (ngModel)="alumno.fecNacimiento" (ngModelChange)="alumno.fecNacimiento = $event">
+                  <h5>Nacionalidad</h5>
+                  <input type="text" name="nacionalidad" class="form-control" [(ngModel)]="alumno.nacionalidad">               
+                  <h5>Celular</h5>
+                  <input type="text" name="celular" class="form-control" [(ngModel)]="alumno.celular">
+                </div>
+                <div class="col-sm-7">
+                  <div class="form-inline">
+                    <div class="control-group">
+                      <h5>Ciudad de Nacimiento</h5>
+                      <input type="text" name="ciudadNacimiento" class="form-control" [(ngModel)]="alumno.ciudadNacimiento">
+                    </div>
+                    <div class="control-group ml-3">
+                      <h5>Departamento</h5>
+                      <input type="text" name="dptoNacimiento" class="form-control" [(ngModel)]="alumno.dptoNacimiento">
+                    </div>
+                  </div>
+                  <div class="form-inline">
+                    <div class="control-group">
+                      <h5>Ciudad Actual</h5>
+                      <input type="text" name="ciudadActual" class="form-control" [(ngModel)]="alumno.ciudadActual">
+                    </div>
+                    <div class="control-group ml-3">
+                      <h5>Departamento</h5>
+                      <input type="text" name="dptoActual" class="form-control" [(ngModel)]="alumno.dptoActual">
+                    </div>
+                  </div>
+                  <h5>Direccion Particular</h5>
+                  <textarea name="direccionParticular" rows="2" class="form-control" [(ngModel)]="alumno.direccionParticular"></textarea>
+                  <h5>Linea Baja Particular</h5>
+                  <input type="text" name="lineaBaja" class="form-control" [(ngModel)]="alumno.lineaBaja">
+                  <h5>Lugar de Trabajo</h5>
+                  <input type="text" name="lugarTrabajo" class="form-control" [(ngModel)]="alumno.lugarTrabajo">
+                  <h5>Telefono Laboral</h5>
+                  <input type="text" name="telLaboral" class="form-control" [(ngModel)]="alumno.telLaboral">
+                </div>
+             </div>
+            </form>
+          </tab>
+          <tab heading="Documentos">
+            <button (click)="showDocum(alumno.id)" class="btn btn-primary mb-2" >Agregar Documento</button>
+            <div class="row">
+              <div *ngFor="let doc of alumno.documentos" class="col-sm-3">
+                 <app-registro-docum-card [documento]="doc" (refreshData)="getDocumentos($event)"></app-registro-docum-card>                 
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>
+

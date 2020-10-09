@@ -1,0 +1,14 @@
+<div class="card mb-4 w-100 h-75">
+  <div class="card-img-wrapper h-75">
+    <img src="{{fileUrl+documento.url}}" alt="{{documento.descripcion}}" class="card-img-top" (click)="showDocum(documento)">
+    <ul class="list-inline member-icons animate text-center">
+      <li class="list-inline-item"><button class="btn btn-primary" (click)="showDocum(documento)"><i class="fa fa-edit"></i></button></li>
+      <li class="list-inline-item"><a href="{{fileUrl+documento.url}}" download class="btn btn-primary"><i class="fa fa-download"></i></a></li>
+      <li class="list-inline-item"><button class="btn btn-danger" (click)="deleteDocum(documento)"><i class="fa fa-trash"></i></button></li>
+    </ul>
+  </div>
+  <div class="card-body p-1">
+    <h6 class="card-title text-center mb-1">{{documento.descripcion}}</h6>
+    <p class="card-text text-muted text-center">{{documento.fechaAlta | date:'yyyy-MM-dd hh:mm'}}</p>
+  </div>
+</div>

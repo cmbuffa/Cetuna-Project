@@ -1,0 +1,75 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top img-thumbnail" src="{{alumno?.fotoUrl}}" alt="assets/img/anon.png" width="100" height="100">
+        <div class="card-body">
+          <div>            
+            <p>{{alumno?.apellidos.toUpperCase()}}, {{alumno?.nombres.toUpperCase()}}</p>
+          </div>
+          <div>            
+            <strong>Cedula N°:</strong>
+            <p>{{alumno?.cedula}}</p>
+          </div>
+          <div>
+            <strong>Ultima Modificacion:</strong>
+            <p>{{alumno?.fechaModificacion | date:'yyyy-MM-dd hh:mm'}}</p>
+          </div>
+        </div>
+        <div class="card-footer">
+          <div class="btn-group d-flex">
+            <button class="btn btn-success w-100" (click)="volver()"><i class="fa fa-arrow-left"></i> Volver</button>
+            <button class="btn btn-primary w-100"><i class="fa fa-database"></i> Guardar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9">
+      <div class="tab-panel">
+        <tabset class="member-tabset">
+          <tab heading="Informacion basica">
+            <div class="row">
+              <div class="col-sm-3">
+                <h5>Id de registro</h5>
+                <p>{{alumno.id}}</p>
+                <h5>Nombres</h5>
+                <p>{{alumno.nombres}}</p>
+                <h5>Apellidos</h5>
+                <p>{{alumno.apellidos}}</p>
+                <h5>Cedula de Identidad</h5>
+                <p>{{alumno.cedula}}</p>
+                <h5>Fecha de nacimiento</h5>
+                <p>{{alumno.fecNacimiento | date:'yyyy-MM-dd'}}</p>
+                <h5>Nacionalidad</h5>
+                <p>{{alumno.nacionalidad}}</p>                               
+              </div>
+              <div class="col-sm-6">
+                <h5>Ciudad de Nacimiento</h5>
+                <p>{{alumno?.ciudadNacimiento}}, {{alumno?.dptoNacimiento}}</p>
+                <h5>Ciudad Actual</h5>
+                <p>{{alumno?.ciudadActual}}, {{alumno?.dptoActual}}</p>
+                <h5>Direccion Particular</h5>
+                <p>{{alumno?.direccionParticular}}</p>
+                <h5>Linea Baja Particular</h5>
+                <p>{{alumno?.lineaBaja}}</p>
+                <h5>Lugar de Trabajo</h5>
+                <p>{{alumno?.lugarTrabajo}}</p>
+                <h5>Telefono Laboral</h5>
+                <p>{{alumno?.telLaboral}}</p>
+                <h5>Celular</h5>
+                <p>{{alumno?.celular}}</p>
+              </div>
+           </div>
+          </tab>
+          <tab heading="Documentos">
+            <div class="row">
+              <div *ngFor="let doc of alumno.documentos" class="col-lg-3 col-md-4 col-sm-8">
+                <app-registro-docum-card [documento]="doc"></app-registro-docum-card>
+              </div>
+            </div>
+          </tab>
+        </tabset>
+      </div>
+    </div>
+  </div>
+</div>

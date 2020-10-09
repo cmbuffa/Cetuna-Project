@@ -19,7 +19,12 @@ export class LoginComponent implements OnInit {
       this.alertify.success('Sesion iniciada');
       this.model = {};
     }, error => {
-      this.alertify.error(error);
+      if (error instanceof ProgressEvent) {
+        this.alertify.error('No se pudo conectar con el servidor');
+      }
+      else {
+        this.alertify.error(error);
+      }
     });
   }
 

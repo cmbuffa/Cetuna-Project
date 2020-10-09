@@ -16,6 +16,93 @@ namespace CetunaProject.API.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.7");
 
+            modelBuilder.Entity("CetunaProject.API.Models.Alumno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Apellidos")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Cedula")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Celular")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CiudadActual")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CiudadNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DireccionLaboral")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DireccionParticular")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DptoActual")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DptoNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FecNacimiento")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaModificacion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LineaBaja")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LugarTrabajo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nacionalidad")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombres")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TelLaboral")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Alumnos");
+                });
+
+            modelBuilder.Entity("CetunaProject.API.Models.DocumentoAlumno", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AlumnoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("EsFoto")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaAlta")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AlumnoId");
+
+                    b.ToTable("DocumentosAlumno");
+                });
+
             modelBuilder.Entity("CetunaProject.API.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -48,6 +135,15 @@ namespace CetunaProject.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Values");
+                });
+
+            modelBuilder.Entity("CetunaProject.API.Models.DocumentoAlumno", b =>
+                {
+                    b.HasOne("CetunaProject.API.Models.Alumno", "Alumno")
+                        .WithMany("Documentos")
+                        .HasForeignKey("AlumnoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
