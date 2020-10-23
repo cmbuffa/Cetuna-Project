@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CetunaProject.API.Data;
 using CetunaProject.API.Dtos;
+using CetunaProject.API.Helpers;
 using CetunaProject.API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -25,10 +26,13 @@ namespace CetunaProject.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAlumnos()
+        public async Task<IActionResult> GetAlumnos([FromQuery] UserParams userParams)
         {
-            var alumnos = await this.repo.GetAll();
+            var alumnos = await this.repo.GetAll(userParams);
             var alumnosToReturn = this.mapper.Map<IEnumerable<AlumnoForListDto>>(alumnos);
+
+            Response.AddPagination(alumnos.CurrentPage, alumnos.PageSize, alumnos.TotalCount, alumnos.TotalPages);
+
             return Ok(alumnosToReturn);
         }
 

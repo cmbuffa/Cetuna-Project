@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CetunaProject.API.Helpers;
 using CetunaProject.API.Models;
 
 namespace CetunaProject.API.Data
@@ -9,7 +10,7 @@ namespace CetunaProject.API.Data
         void Add(T entity);
         void Delete(T entity);
         Task<bool> SaveAll();
-        Task<IEnumerable<T>> GetAll();
+        Task<PagedList<T>> GetAll(UserParams userParams);
         Task<T> GetOne(int id);
     }
 }

@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RegistroDocumDisplayComponent } from '../registro-docum-display/registro-docum-display.component';
-import { Documento } from '../__models/Documento';
-import { environment } from '../../environments/environment';
-import { DocumentoService } from '../__services/documento.service';
+import { Documento } from '../../__models/Documento';
+import { environment } from '../../../environments/environment';
+import { DocumentoService } from '../../__services/documento.service';
 import { ActivatedRoute } from '@angular/router';
-import { AlertifyService } from '../__services/alertify.service';
+import { AlertifyService } from '../../__services/alertify.service';
 
 @Component({
   selector: 'app-registro-docum-card',

@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Alumno, EmptyAlumno } from '../__models/Alumno';
-import { AlertifyService } from '../__services/alertify.service';
-import { AlumnoService } from '../__services/alumno.service';
+import { Alumno, EmptyAlumno } from '../../__models/Alumno';
+import { AlertifyService } from '../../__services/alertify.service';
+import { AlumnoService } from '../../__services/alumno.service';
 import { NgForm } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RegistroDocumAddComponent } from '../registro-docum-add/registro-docum-add.component';

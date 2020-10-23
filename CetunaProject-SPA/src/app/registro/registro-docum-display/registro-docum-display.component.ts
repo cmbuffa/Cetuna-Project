@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Documento } from '../__models/Documento';
+import { Documento } from '../../__models/Documento';
 
 @Component({
   selector: 'app-registro-docum-display',

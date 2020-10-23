@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CetunaProject.API.Helpers;
 using CetunaProject.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,10 +13,10 @@ namespace CetunaProject.API.Data
         {
         }
 
-        public override async Task<IEnumerable<DocumentoAlumno>> GetAll()
+        public override async Task<PagedList<DocumentoAlumno>> GetAll(UserParams userParams)
         {
-            var documentos = await this.context.DocumentosAlumno.ToListAsync();
-            return documentos;
+            var documentos = this.context.DocumentosAlumno;
+            return await PagedList<DocumentoAlumno>.CreateAsync(documentos, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<IEnumerable<DocumentoAlumno>> GetByAlumno(int idAlumno)

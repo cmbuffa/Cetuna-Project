@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Alumno } from '../__models/Alumno';
-import { AlertifyService } from '../__services/alertify.service';
-import { AlumnoService } from '../__services/alumno.service';
+import { Alumno } from '../../__models/Alumno';
+import { AlertifyService } from '../../__services/alertify.service';
+import { AlumnoService } from '../../__services/alumno.service';
 
 @Component({
   selector: 'app-registro-alumno-detalle',

@@ -1,4 +1,6 @@
+using System.Linq;
 using System.Threading.Tasks;
+using CetunaProject.API.Helpers;
 using CetunaProject.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,10 +24,17 @@ namespace CetunaProject.API.Data
             this.context.Remove(entity);
         }
 
-        public async Task<System.Collections.Generic.IEnumerable<Alumno>> GetAll()
+        public async Task<PagedList<Alumno>> GetAll(UserParams userParams)
         {
-            var alumnos = await this.context.Alumnos.Include(a => a.Documentos).ToListAsync();
-            return alumnos;
+            var alumnos = this.context.Alumnos.Include(a => a.Documentos).AsQueryable();
+
+            if(userParams.Description != null)
+                alumnos = alumnos.Where(a => EF.Functions.Like(a.Apellidos, $"%{userParams.Description}%"));
+            
+            if(userParams.Id != 0)
+                alumnos = alumnos.Where(a => a.Cedula == userParams.Id);
+
+            return await PagedList<Alumno>.CreateAsync(alumnos, userParams.PageNumber,userParams.PageSize);
         }
 
         public async Task<Alumno> GetOne(int id)

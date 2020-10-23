@@ -6,7 +6,10 @@
           <a class="btn btn-primary" [routerLink]="['/registro-alu/nuevo']" ><i class="fa fa-plus-square"></i> Nuevo alumno</a>
         </div>
         <div class="col-7">
-            <input type="text" class="form-control" placeholder="Buscar..."> 
+          <div class="d-flex">
+            <input type="text" class="form-control mr-1" [(ngModel)]="buscar" placeholder="Buscar...">
+            <button class="btn btn-primary" (click)="busqueda()">Buscar</button>
+          </div>
         </div>
     </div>
       <table class="table">
@@ -47,4 +50,13 @@
             </tr>
         </tbody>
     </table>
+</div>
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" 
+  [totalItems]="pagination.totalItems" 
+  [(ngModel)]="pagination.currentPage" 
+  [itemsPerPage]="pagination.itemsPerPage"
+  (pageChanged)="pageChanged($event)"
+  previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" >
+  </pagination>
 </div>

@@ -8,10 +8,13 @@ import {catchError} from 'rxjs/Operators';
 
 @Injectable()
 export class RegistroAlumnoResolver implements Resolve<Alumno[]> {
+    pageNumber = 1;
+    pageSize = 1;
+
     constructor(private alumnoService: AlumnoService, private router: Router, private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Alumno[]> {
-        return this.alumnoService.getAlumnos().pipe(
+        return this.alumnoService.getAlumnos(this.pageNumber, this.pageSize).pipe(
             catchError(error => {
                 this.alertify.error('Error al obtener los datos');
                 this.router.navigate(['/']);
